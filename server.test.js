@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('./server');
+
 
 describe('GET /', () => {
   it('responds with status 200 and a welcome message', async () => {
