@@ -21,10 +21,7 @@ jobs:
 
       - name: Install dependencies
         run: npm install
- 
-      - name: Server Launch
-        run: node server.js&
-        
+         
       - name: Run Jest tests
         run: npm test
 
