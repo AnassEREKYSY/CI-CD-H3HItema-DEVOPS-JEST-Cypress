@@ -10,4 +10,4 @@ const server = app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
 });
 
-module.exports = app; // Exporter l'application Express
+module.exports = app; 
