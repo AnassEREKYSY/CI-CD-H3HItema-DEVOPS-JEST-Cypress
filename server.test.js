@@ -4,8 +4,8 @@ const app = require('./server'); // Import your Express app
 describe('GET /', () => {
   let server;
 
-  beforeAll(() => {
-    server = app.listen(3000); // Start the server
+  beforeAll((done) => {
+    server = app.listen(3000, done); // Start the server
   });
 
   afterAll((done) => {
