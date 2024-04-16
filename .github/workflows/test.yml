@@ -35,4 +35,20 @@ jobs:
         run: |
           docker build -t ${{ secrets.DOCKER_HUB_NAME }}/nodejs_ci_cd:latest .
           docker push ${{ secrets.DOCKER_HUB_NAME }}/nodejs_ci_cd:latest
+  deploy-to-production:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install ssh key
+        uses: webfactory/ssh-agent@v0.5.3
+
+      - name: Deploy to Production
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@20.240.194.164 << 'EOF'
+          docker pull your_dockerhub_username/your_image_name:latest
+          docker stop your_container_name || true
+          docker rm your_container_name || true
+          docker run -d -p 80:80 --name nodejs_devops ${{ secrets.DOCKER_HUB_NAME }}/nodejs_ci_cd:latest
+          EOF
 
