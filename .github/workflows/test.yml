@@ -16,6 +16,9 @@ jobs:
       - name: Checkout repository code
         uses: actions/checkout@v2
 
+      - name: Checkout repository code
+        uses: ls -la
+
       - name: Install dependencies
         run: npm install
 
