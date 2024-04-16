@@ -28,3 +28,11 @@ jobs:
       - name: Run Cypress tests
         run: npm run cypress -- run
 
+      - name: Log in to Docker Hub
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t your_dockerhub_username/your_image_name:latest .
+          docker push ${{ secrets.DOCKER_HUB_NAME }}/nodejs_ci_cd:latest
+
